@@ -1,0 +1,19 @@
+node{
+    def app
+    stage('Build image'){
+
+        /* This builds the actual image; synonymous to docker build on command line */
+        echo "Containers are starting to  build"
+        app = docker.build("shinerecruiter/recruiter")
+        echo "Containers are built"
+    }
+
+    stage('Test image'){
+
+        /* running tests against our images */
+
+            app.inside {
+                echo "Tests passed"
+            }
+        }
+}
